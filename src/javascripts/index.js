@@ -10,7 +10,7 @@ import 'bootstrap'
 
 function displayCard(c){
     return `
-    <div class="card" data-title="${c.title}">
+    <div class="cardgit" data-title="${c.title}">
             <img src="${c.poster}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${c.title}</h5>
@@ -36,13 +36,13 @@ function displayCards(){
         let ndx = -1
         for(let i in cards){
             if(cards[i].title == event.target.closest('.card').dataset.title){
-                ndx = 1
+                ndx = i
                 break
             }
         }
         if(ndx != -1){
             cards.splice(ndx, 1)
-            localStorage.setItem('card', JSON.stringify(cards))
+            localStorage.setItem('cards', JSON.stringify(cards))
             location.reload()
         }
     }
@@ -60,7 +60,7 @@ function addNewCard(event){
     if(t && d && p){
         let card = {title: t, description: d, poster: p}
         cards.push(card)
-        localStorage.setItem('card', JSON.stringify(cards))
+        localStorage.setItem('cards', JSON.stringify(cards))
     }
     this.reset()
     document.querySelector('#cards').classList.remove('d-none')
@@ -80,4 +80,4 @@ document.forms[0].querySelector('[type="button"]').onclick = function(){
 }
 
 document.forms[0].addEventListener('submit', addNewCard, false)
-displayCards()
+//displayCards()
